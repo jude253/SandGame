@@ -22,3 +22,6 @@ ClickSquare createClickSquare(int x, int y, int l, Color color);
 extern std::vector<ClickSquare> CLICK_SQUARES_LIST;
 ClickSquare createRandomClickSquare();
 bool deleteClickSquareIfClicked();
+bool addClickSquareToCLICK_SQUARES_LIST();
+
+bool updateSquares();

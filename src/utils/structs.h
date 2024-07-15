@@ -12,6 +12,7 @@ typedef struct {
     float fps;  // FPS calculated from previous frame start to current frame start
     SDL_Point mousePosition;
     Uint64 squaresClickedCount;
+    bool mouseDown;
 } App;
 
 typedef struct {

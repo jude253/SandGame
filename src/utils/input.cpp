@@ -32,8 +32,16 @@ void doInput(void)
                 SDL_Log("Mouse position: x=%i y=%i",
                     app.mousePosition.x, app.mousePosition.y
                 );
-                deleteClickSquareIfClicked();
+                app.mouseDown = true;
                 break;
+            case SDL_MOUSEBUTTONUP:
+                app.mouseDown = false;
+                SDL_Log("Mouse position: x=%i y=%i",
+                    app.mousePosition.x, app.mousePosition.y
+                );
+                SDL_Log("app.mouseDown: %i",
+                    app.mouseDown
+                );
             default:
                 break;
         }

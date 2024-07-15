@@ -48,6 +48,16 @@ ClickSquare createRandomClickSquare() {
     return cs;
 }
 
+
+ClickSquare createClickSquareAtMousePosition() {
+    int length = 5;
+    int x = app.mousePosition.x;
+    int y = app.mousePosition.y;
+    ClickSquare cs = createClickSquare(x, y, length, BLUE);
+    return cs;
+}
+
+
 bool deleteClickSquareIfClicked() {
     for (int i=0; i<CLICK_SQUARES_LIST.size(); i++) {
         ClickSquare cs = CLICK_SQUARES_LIST[i];
@@ -59,6 +69,25 @@ bool deleteClickSquareIfClicked() {
             CLICK_SQUARES_LIST.push_back(createRandomClickSquare());
             return 1;
         }
+    }
+    return 0;
+}
+
+
+bool addClickSquareToCLICK_SQUARES_LIST() {
+    ClickSquare cs = createClickSquareAtMousePosition();
+    CLICK_SQUARES_LIST.push_back(cs);
+    return 0;
+}
+
+bool updateSquares() {
+    for (int i=0; i<CLICK_SQUARES_LIST.size(); i++) {
+        ClickSquare *cs = &CLICK_SQUARES_LIST[i];
+        if (cs->position.y < SCREEN_HEIGHT - 2*GRID_HEIGHT) {
+            cs->position.y += 1;
+            cs->drawRect.y = cs->position.y;
+        }
+        
     }
     return 0;
 }

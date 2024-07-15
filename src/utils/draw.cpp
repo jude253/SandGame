@@ -97,11 +97,15 @@ void presentScene(void)
     mouse_rect.h = 10;
 
     SDL_RenderDrawRect(app.renderer, &mouse_rect);
+    if (app.mouseDown) {
+        addClickSquareToCLICK_SQUARES_LIST();
+    }
     
     for (int i = 0; i < CLICK_SQUARES_LIST.size(); i++) {
         ClickSquare cs = CLICK_SQUARES_LIST[i];
         drawClickSquare(app, cs);
     }
+    updateSquares();
     drawBorder();
     renderFPS();
     renderSquaresClicked();
