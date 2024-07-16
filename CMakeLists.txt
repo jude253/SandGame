@@ -72,11 +72,12 @@ else()
   set(CMAKE_BUILD_TYPE Release CACHE STRING "CMAKE_BUILD_TYPE")
   
   # Embedding files doc: https://emscripten.org/docs/porting/files/packaging_files.html#packaging-files
+  # Figure out better way to allocate enough Stack size or better manage memory.  For now using STACK_SIZE
   add_custom_command(
     OUTPUT ${EXECUTABLE_NAME}.html ${EXECUTABLE_NAME}.js ${EXECUTABLE_NAME}.wasm
     COMMAND rm -rf ${DIST_DIR}
     COMMAND mkdir  ${DIST_DIR}
-    COMMAND ${EMCC} ${CPP_SOURCE} --use-port=sdl2 --use-port=sdl2_ttf --embed-file=${PROJECT_ROOT_DIR}/${FONT_RELATIVE_PATH}@/${FONT_RELATIVE_PATH} -o ${DIST_DIR}/${EXECUTABLE_NAME}.html
+    COMMAND ${EMCC} ${CPP_SOURCE} --use-port=sdl2 --use-port=sdl2_ttf -sSTACK_SIZE=2621440 --embed-file=${PROJECT_ROOT_DIR}/${FONT_RELATIVE_PATH}@/${FONT_RELATIVE_PATH} -o ${DIST_DIR}/${EXECUTABLE_NAME}.html
     VERBATIM
   )
   add_custom_target(CGameSandbox

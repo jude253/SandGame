@@ -16,9 +16,3 @@ int randIntInRange(int min, int max) {
 /*
 https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
 */
-SDL_Point getRandomPoint(void) {
-    SDL_Point point;
-    point.x = GRID_HEIGHT + rand() % (SCREEN_WIDTH - GRID_HEIGHT + 1);
-    point.y = GRID_HEIGHT + rand() % (SCREEN_HEIGHT - GRID_HEIGHT + 1);
-    return point;
-}

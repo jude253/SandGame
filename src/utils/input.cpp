@@ -1,6 +1,5 @@
 #include <SDL.h>
 #include "init.h"
-#include "gameObjects/clickSquare.h"
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
 #endif
@@ -42,6 +41,7 @@ void doInput(void)
                 SDL_Log("app.mouseDown: %i",
                     app.mouseDown
                 );
+                // app.grid.printLookup();
             default:
                 break;
         }

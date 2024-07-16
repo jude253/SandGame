@@ -14,6 +14,14 @@ There is a long delay between when the screen is pressed and when the
 probably best mainly aim to make games that work well on desktop b/c of
 this.
 
+
+### Demo
+
+There is a playable WASM demo of this game here:
+
+https://wasm.judecapachietti.com/SandGame/game.html
+
+
 ## Dependencies:
 - CMake
   - Docs: https://cmake.org/
@@ -38,7 +46,7 @@ this.
 
 ```
 # Clone repo and submodules:
-git clone --recurse-submodules https://github.com/jude253/CGameSandbox.git
+git clone --recurse-submodules git@github.com:jude253/SandGame.git
 ```
 
 To intially setup up Emscripten:

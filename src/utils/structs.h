@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL.h>
+#include "gameObjects/gameObjects.h"
 
 typedef struct {
     SDL_Renderer *renderer;
@@ -11,16 +12,9 @@ typedef struct {
     float renderFrameSeconds;  // Seconds to render current frame
     float fps;  // FPS calculated from previous frame start to current frame start
     SDL_Point mousePosition;
-    Uint64 squaresClickedCount;
     bool mouseDown;
+    Grid grid;
 } App;
-
-typedef struct {
-    Uint8 r;
-    Uint8 g; 
-    Uint8 b; 
-    Uint8 a;
-} Color;
 
 typedef struct {
     float x;

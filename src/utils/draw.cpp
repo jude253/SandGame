@@ -4,53 +4,8 @@
 #include "drawHelperFunctions.h"
 #include "defs.h"
 #include "input.h"
-#include "gameObjects/clickSquare.h"
 #include <string>
 
-void drawDebugGrid(void) {
-    setRenderDrawColor(WHITE);
-    for (int i = 0; i < SCREEN_DIVISOR; i++) {
-        for (int j = 0; j < SCREEN_DIVISOR; j++) {
-            drawRect(i*GRID_WIDTH, j*GRID_HEIGHT);
-        }
-    }
-}
-
-void drawBorder(void) {
-
-    // Top
-    setRenderDrawColor(BLACK);
-    SDL_Rect top;
-    top.x = 0;
-    top.y = 0;
-    top.w = SCREEN_WIDTH;
-    top.h = GRID_HEIGHT;
-    SDL_RenderFillRect(app.renderer, &top);
-
-    // Bottom
-    SDL_Rect bottom;
-    bottom.x = 0;
-    bottom.y = SCREEN_HEIGHT-GRID_HEIGHT;
-    bottom.w = SCREEN_WIDTH;
-    bottom.h = GRID_HEIGHT;
-    SDL_RenderFillRect(app.renderer, &bottom);
-
-    
-    // Sides:
-    setRenderDrawColor(DARK_RED);
-    
-    // Left
-    drawVerticalTrapezoid(
-        0, 0,             GRID_WIDTH, GRID_HEIGHT,
-        0, SCREEN_HEIGHT, GRID_WIDTH, SCREEN_HEIGHT-GRID_HEIGHT
-    );
-
-    // Right
-    drawVerticalTrapezoid(
-        SCREEN_WIDTH-GRID_WIDTH, GRID_HEIGHT,               SCREEN_WIDTH, 0,
-        SCREEN_WIDTH-GRID_WIDTH, SCREEN_HEIGHT-GRID_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT
-    );
-}
 
 void prepareScene(void)
 {
@@ -77,37 +32,22 @@ void renderText(int x, int y, std::string text) {
 void renderFPS(void) {
     std::string writeOnScreen = "FPS=";
     writeOnScreen.append(std::to_string((int)app.fps));
-    renderText(0, SCREEN_HEIGHT-GRID_HEIGHT, writeOnScreen);
-}
-
-void renderSquaresClicked(void) {
-    std::string writeOnScreen ="Squares Clicked=";
-    writeOnScreen.append(std::to_string((int)app.squaresClickedCount));
     renderText(0, 0, writeOnScreen);
 }
 
 void presentScene(void)
 {   
-    drawDebugGrid();
-    
-    SDL_Rect mouse_rect;
-    mouse_rect.x = app.mousePosition.x - 5;
-    mouse_rect.y = app.mousePosition.y - 5;
-    mouse_rect.w = 10;
-    mouse_rect.h = 10;
-
-    SDL_RenderDrawRect(app.renderer, &mouse_rect);
-    if (app.mouseDown) {
-        addClickSquareToCLICK_SQUARES_LIST();
-    }
-    
-    for (int i = 0; i < CLICK_SQUARES_LIST.size(); i++) {
-        ClickSquare cs = CLICK_SQUARES_LIST[i];
-        drawClickSquare(app, cs);
-    }
-    updateSquares();
-    drawBorder();
     renderFPS();
-    renderSquaresClicked();
+
+    if (app.mouseDown) {
+        app.grid.addSandGrain(app.mousePosition.x, app.mousePosition.y);
+    }
+    app.grid.updateGrainsOfSand();
+
+    for (int i = 0; i < app.grid.grainsOfSand.size(); i++) {
+        SandGrain *sandGrain = app.grid.grainsOfSand[i];
+        sandGrain->render();
+    }
+
     SDL_RenderPresent(app.renderer);
 }

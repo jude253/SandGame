@@ -1,9 +1,10 @@
 #pragma once
 
+#include "colors.h"
 #include "structs.h"
 
 void setRenderDrawColor(Color color);
-void drawRect(int x, int y);
+void renderFillRect(SDL_Rect rect);
 void drawVertLine(int x, int y, int h);
 /*
 Draw vertically parallel trapezoid from x_lt to x_rt-- Left to Right.

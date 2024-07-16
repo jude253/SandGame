@@ -2,6 +2,7 @@
 #include "init.h"
 #include "defs.h"
 #include "input.h"
+#include "colors.h"
 
 void setRenderDrawColor(Color color) {
     SDL_SetRenderDrawColor(app.renderer, 
@@ -12,18 +13,15 @@ void setRenderDrawColor(Color color) {
     );
 }
 
-void drawVertLine(int x, int y, int h) {
-    SDL_RenderDrawLine(app.renderer, x, y, x, y+h);
+
+void renderFillRect(SDL_Rect rect) {
+    SDL_RenderFillRect(app.renderer, &rect);
 }
 
-void drawRect(int x, int y) {
-    SDL_Rect rect;
-    rect.x = x;
-    rect.y = y;
-    rect.w = GRID_WIDTH;
-    rect.h = GRID_HEIGHT;
-    
-    SDL_RenderDrawRect(app.renderer, &rect);
+
+
+void drawVertLine(int x, int y, int h) {
+    SDL_RenderDrawLine(app.renderer, x, y, x, y+h);
 }
 
 /*
