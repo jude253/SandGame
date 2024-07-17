@@ -16,3 +16,5 @@ extern Color GREEN;
 extern Color WHITE;
 extern Color BLACK;
 extern Color BACKGROUND_COLOR;
+
+Color getRandomColor();
