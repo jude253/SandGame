@@ -31,11 +31,19 @@ bool Grid::isOpenLocation(int x, int y) {
 void Grid::addSandGrain(int x, int y) {
     SandGrain *sandGrain = new SandGrain;
     sandGrain->setupGrainOfSand(x, y, 1);
-    sandGrain->color = getRandomColor();  // At the moment this drops up to 2FPS
+    sandGrain->color = app.currentColor;  // At the moment this drops up to 2FPS
     if (this->isOpenLocation(x,y)) {
         this->grainsOfSand.push_back(sandGrain);
         this->lookup[x][y] = 1;      
     }
+}
+
+void Grid::updateSandGrain(SandGrain *sandGrain, int new_x, int new_y) {
+    this->lookup[sandGrain->x][sandGrain->y] = 0;
+    this->lookup[new_x][new_y] = 1;
+    sandGrain->x = new_x;
+    sandGrain->y = new_y;
+    sandGrain->update();
 }
 
 /**
@@ -52,11 +60,13 @@ void Grid::updateGrainsOfSand() {
         int new_x = sandGrain->x;
         int new_y = sandGrain->y + 1;
         if (this->isOpenLocation(new_x, new_y)){
-            this->lookup[sandGrain->x][sandGrain->y] = 0;
-            this->lookup[new_x][new_y] = 1;
-            sandGrain->x = new_x;
-            sandGrain->y = new_y;
-            sandGrain->update();
+            this->updateSandGrain(sandGrain, new_x, new_y);
+        } else if (isOpenLocation(new_x+1, new_y)) {
+            int new_x_right = new_x+1;
+            this->updateSandGrain(sandGrain, new_x_right, new_y);
+        } else if (isOpenLocation(new_x-1, new_y)) {
+            int new_x_left = new_x-1;
+            this->updateSandGrain(sandGrain, new_x_left, new_y);
         }
     }
 }

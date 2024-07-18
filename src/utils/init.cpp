@@ -25,6 +25,8 @@ void initSDL(void)
     app.fps = 0.0f;
 
     app.grid = grid.createGrid();
+
+    app.currentColor = WHITE;
     
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {

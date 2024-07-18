@@ -14,7 +14,7 @@ void prepareScene(void)
 }
 
 
-void renderText(int x, int y, std::string text) {
+SDL_Rect renderText(int x, int y, std::string text) {
     SDL_Color white = {255, 255, 255};
     SDL_Surface *surface = TTF_RenderText_Solid(font, text.c_str(), white);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(app.renderer, surface);
@@ -27,17 +27,29 @@ void renderText(int x, int y, std::string text) {
     rect.w = textWidth;
     rect.h = textHeight;
     SDL_RenderCopy(app.renderer, texture, NULL, &rect);
+    return rect;
+}
+
+void renderCurrentColor(void) {
+    std::string writeOnScreen = "Current Color:";
+    SDL_Rect textRect = renderText(0, 0, writeOnScreen);
+    SDL_Rect colorRect;
+    colorRect.x = textRect.x + textRect.w;
+    colorRect.y = textRect.y;
+    colorRect.w = textRect.h;
+    colorRect.h = textRect.h;
+    setRenderDrawColor(app.currentColor);
+    SDL_RenderFillRect(app.renderer, &colorRect);
 }
 
 void renderFPS(void) {
     std::string writeOnScreen = "FPS=";
     writeOnScreen.append(std::to_string((int)app.fps));
-    renderText(0, 0, writeOnScreen);
+    renderText(0, SCREEN_HEIGHT-25, writeOnScreen);
 }
 
 void presentScene(void)
 {   
-    renderFPS();
 
     if (app.mouseDown) {
         app.grid.addSandGrain(app.mousePosition.x, app.mousePosition.y);
@@ -49,5 +61,7 @@ void presentScene(void)
         sandGrain->render();
     }
 
+    renderCurrentColor();
+    renderFPS();
     SDL_RenderPresent(app.renderer);
 }

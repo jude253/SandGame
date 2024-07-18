@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include "init.h"
+#include "colors.h"
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
 #endif
@@ -42,6 +43,10 @@ void doInput(void)
                     app.mouseDown
                 );
                 // app.grid.printLookup();
+                break;
+            case SDL_KEYDOWN:
+                app.currentColor = getRandomColor();
+                break;
             default:
                 break;
         }

@@ -14,6 +14,7 @@ typedef struct {
     SDL_Point mousePosition;
     bool mouseDown;
     Grid grid;
+    Color currentColor;
 } App;
 
 typedef struct {

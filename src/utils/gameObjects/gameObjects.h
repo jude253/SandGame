@@ -39,6 +39,7 @@ public:
     bool isInGrid(int x, int y);
     bool isOpenLocation(int x, int y);
     void addSandGrain(int x, int y);
+    void updateSandGrain(SandGrain *sandGrain, int new_x, int new_y);
     void updateGrainsOfSand();
     void printLookup();
 };
