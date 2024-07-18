@@ -4,6 +4,7 @@
 #include "structs.h"
 
 void setRenderDrawColor(Color color);
+void setRenderDrawColor(Color* color);
 void renderFillRect(SDL_Rect rect);
 void drawVertLine(int x, int y, int h);
 /*

@@ -26,7 +26,13 @@ void initSDL(void)
 
     app.grid = grid.createGrid();
 
-    app.currentColor = WHITE;
+    // Make 100 random colors.
+    for (int i = 0; i < 100; i++) {
+        Color color = getRandomColor();
+        app.randomColorsList.push_back(color);
+    }
+    
+    app.currentColor = &app.randomColorsList[0];
     
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {

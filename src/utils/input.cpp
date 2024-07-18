@@ -1,6 +1,6 @@
 #include <SDL.h>
 #include "init.h"
-#include "colors.h"
+#include "common.h"
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
 #endif
@@ -45,7 +45,7 @@ void doInput(void)
                 // app.grid.printLookup();
                 break;
             case SDL_KEYDOWN:
-                app.currentColor = getRandomColor();
+                app.currentColor = &app.randomColorsList[randomIntInRange(0, (int)app.randomColorsList.size())];
                 break;
             default:
                 break;

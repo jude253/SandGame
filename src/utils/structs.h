@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include "gameObjects/gameObjects.h"
+#include <vector>
 
 typedef struct {
     SDL_Renderer *renderer;
@@ -14,7 +15,8 @@ typedef struct {
     SDL_Point mousePosition;
     bool mouseDown;
     Grid grid;
-    Color currentColor;
+    std::vector<Color> randomColorsList;
+    Color* currentColor;
 } App;
 
 typedef struct {

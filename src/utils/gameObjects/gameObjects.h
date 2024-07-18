@@ -16,9 +16,8 @@ public:
     int x;
     int y;
     int l;
-    Color color;
+    Color* color;
     void setupGrainOfSand(int x, int y, int l);
-    void update();
     void render();
 };
 

@@ -14,6 +14,16 @@ void setRenderDrawColor(Color color) {
 }
 
 
+void setRenderDrawColor(Color* color) {
+    SDL_SetRenderDrawColor(app.renderer, 
+    color->r, 
+    color->g, 
+    color->b, 
+    color->a
+    );
+}
+
+
 void renderFillRect(SDL_Rect rect) {
     SDL_RenderFillRect(app.renderer, &rect);
 }

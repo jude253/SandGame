@@ -31,7 +31,7 @@ bool Grid::isOpenLocation(int x, int y) {
 void Grid::addSandGrain(int x, int y) {
     SandGrain *sandGrain = new SandGrain;
     sandGrain->setupGrainOfSand(x, y, 1);
-    sandGrain->color = app.currentColor;  // At the moment this drops up to 2FPS
+    sandGrain->color = app.currentColor;
     if (this->isOpenLocation(x,y)) {
         this->grainsOfSand.push_back(sandGrain);
         this->lookup[x][y] = 1;      
@@ -43,7 +43,6 @@ void Grid::updateSandGrain(SandGrain *sandGrain, int new_x, int new_y) {
     this->lookup[new_x][new_y] = 1;
     sandGrain->x = new_x;
     sandGrain->y = new_y;
-    sandGrain->update();
 }
 
 /**
