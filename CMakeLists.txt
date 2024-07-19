@@ -78,7 +78,7 @@ else()
     OUTPUT ${EXECUTABLE_NAME}.html ${EXECUTABLE_NAME}.js ${EXECUTABLE_NAME}.wasm
     COMMAND rm -rf ${DIST_DIR}
     COMMAND mkdir  ${DIST_DIR}
-    COMMAND ${EMCC} ${CPP_SOURCE} --use-port=sdl2 --use-port=sdl2_ttf -sSTACK_SIZE=2621440 -sALLOW_MEMORY_GROWTH --embed-file=${PROJECT_ROOT_DIR}/${FONT_RELATIVE_PATH}@/${FONT_RELATIVE_PATH} -O3 -o ${DIST_DIR}/${EXECUTABLE_NAME}.html
+    COMMAND ${EMCC} ${CPP_SOURCE} --use-port=sdl2 --use-port=sdl2_ttf -sSTACK_SIZE=2621440 -sALLOW_MEMORY_GROWTH --embed-file=${PROJECT_ROOT_DIR}/${FONT_RELATIVE_PATH}@/${FONT_RELATIVE_PATH} -O2 -o ${DIST_DIR}/${EXECUTABLE_NAME}.html
     VERBATIM
   )
   add_custom_target(CGameSandbox

@@ -8,10 +8,3 @@ void SandGrain::setupGrainOfSand(int x, int y, int l) {
     this->y = y;
     this->l = l;
 }
-
-
-void SandGrain::render() {
-    setRenderDrawColor(this->color);
-    SDL_RenderDrawPoint(app.renderer, this->x, this->y);
-    // renderFillRect(drawRect);
-}

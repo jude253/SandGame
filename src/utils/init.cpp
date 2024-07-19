@@ -33,6 +33,7 @@ void initSDL(void)
     }
     
     app.currentColor = &app.randomColorsList[0];
+    app.grid.previousDrawColor = nullptr;
     
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {

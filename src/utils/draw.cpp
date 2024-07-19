@@ -62,10 +62,10 @@ void presentScene(void)
     }
     app.grid.updateGrainsOfSand();
 
-    for (int i = 0; i < app.grid.grainsOfSand.size(); i++) {
-        SandGrain *sandGrain = app.grid.grainsOfSand[i];
-        sandGrain->render();
-    }
+    // for (int i = 0; i < app.grid.grainsOfSand.size(); i++) {
+    //     SandGrain *sandGrain = app.grid.grainsOfSand[i];
+    //     sandGrain->render();
+    // }
 
     renderCurrentColor();
     renderFPS();
