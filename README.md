@@ -19,7 +19,7 @@ this.
 
 There is a playable WASM demo of this game here:
 
-https://wasm.judecapachietti.com/SandGame/game.html
+https://wasm.jander.io/SandGame/game.html
 
 
 ## Dependencies:

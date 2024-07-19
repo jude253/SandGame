@@ -10,16 +10,12 @@ Grid Grid::createGrid() {
     grid.height = SCREEN_HEIGHT;
 
     /**
-     * Somehow allocating more memory here for the color grid fixes the
-     * sinkhole issue that occurs.  I don't understand why, but I think
-     * something with the mouse movement is reusing the like a part of
-     * the `grid.lookup` memory and causing an odd sinkhole effect with
-     * optimizations.
+     * Using memset leads to a sinkhole with optimizations. Just set the
+     * points with loops.
      */
-    memset(grid.lookup, 0, sizeof(grid.lookup));
     for (int i = 0; i < SCREEN_WIDTH; i++) {
         for (int j = 0; j < SCREEN_WIDTH; j++) {
-            grid.colorGrid[i][j] = nullptr;
+            grid.lookup[i][j] = 0;
         }
     }
     return grid;
