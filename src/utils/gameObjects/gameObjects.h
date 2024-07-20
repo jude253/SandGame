@@ -31,7 +31,7 @@ class Grid
 public:
     int height;
     int width;
-    int lookup[SCREEN_WIDTH][SCREEN_HEIGHT];  // (x,y)
+    SandGrain* lookup[SCREEN_WIDTH][SCREEN_HEIGHT];  // (x,y)
 
     /**
      * Maybe it would help to use a minimal color grid for drawing sand
@@ -52,6 +52,8 @@ public:
     void addSandGrain(int x, int y);
     void updateSandGrain(SandGrain *sandGrain, int new_x, int new_y);
     void renderSandGrain(SandGrain* sandgrain);
+    void updateAndRenderGrainsOfSand();
     void updateGrainsOfSand();
+    void renderGrainsOfSand();
     void printLookup();
 };
